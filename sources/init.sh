@@ -11,7 +11,7 @@ function sparse_checkout() {
   shift 4
   local dirs="$@"    # directories to include in sparse checkout
 
-  echo "[debug] sparse_checkout $dir $repo $ref $init_cmd $dirs"
+  echo "[debug] sparse_checkout '$dir' '$repo' '$ref' '$init_cmd' $dirs"
 
   if [ ! -d "./$dir" ]; then
     mkdir "$dir"
@@ -32,8 +32,8 @@ function sparse_checkout() {
 # Clone solver
 sparse_checkout "nabl" \
   "git@github.com:metaborg/nabl" \
-  '558f63e825066263ff8600f0a0eb4f07bb556b00' \
-  'cd scopegraph && mvn install && cd ..' \
+  'develop/tracing' \
+  'cd scopegraph && mvn install -DskipTests=true && cd ..' \
   '/scopegraph'
 
 # Clone benchmark tool
@@ -44,3 +44,12 @@ sparse_checkout "statix-benchmark" \
   '/statix.benchmark' '/statix.benchmark.builder'
 
 # Clone Java Spec & Evaluation projects
+sparse_checkout "java-front" \
+  "git@github.com:metaborg/java-front.git" \
+  "master" \
+  "cd lang.java && mvn install && cd ../lang.java.statics && mvn install && cd .." \
+  '/lang.java' '/lang.java.statics'
+
+if [ ! -d "./java-evaluation" ]; then
+  git clone git@github.com:MetaBorgCube/java-evaluation.git
+fi
