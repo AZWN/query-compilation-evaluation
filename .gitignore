@@ -3,3 +3,6 @@
 
 # Local maven repository
 /.m2/repository
+
+# local benchmark results
+/build/*.csv
