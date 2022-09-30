@@ -42,14 +42,14 @@ function install_plugin_dep() {
 # Build and install local sources
 function mvn_install() {
   pushd $1
-  mvn_bare dependency:go-offline
+  mvn_bare dependency:go-offline -DgeneratePom=true
   mvn_local install
   popd
 }
 
 function mvn_install_standalone() {
   pushd $1
-  mvn_bare dependency:go-offline
+  mvn_bare dependency:go-offline -DgeneratePom=true
   mvn_local verify install assembly:single
   popd
   cp $1/$2 build/

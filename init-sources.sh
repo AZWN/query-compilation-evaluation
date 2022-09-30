@@ -42,6 +42,7 @@ install_plugin_dep "org.apache.maven.shared:maven-artifact-transfer:0.11.0:jar"
 install_plugin_dep "org.codehaus.plexus:plexus-interpolation:1.25:jar"
 install_plugin_dep "org.codehaus.plexus:plexus-io:3.2.0:jar"
 install_plugin_dep "org.codehaus.plexus:plexus-compiler-eclipse:2.8.8:jar"
+install_plugin_dep "org.codehaus.plexus:plexus-archiver:4.2.1:jar"
 install_plugin_dep "org.apache.maven:maven-archiver:3.5.0:jar"
 install_plugin_dep "org.eclipse.jdt:ecj:3.25.0:jar"
 

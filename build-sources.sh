@@ -9,7 +9,6 @@ if [ ! -d "build" ]; then
 fi
 
 
-
 mvn_install "sources/nabl/scopegraph"
 mvn_install "sources/nabl/p_raffrayi"
 mvn_install "sources/nabl/statix.solver"
