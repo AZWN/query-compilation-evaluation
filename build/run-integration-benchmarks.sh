@@ -10,5 +10,5 @@ java -cp statix.benchmark-2.6.0-SNAPSHOT-jar-with-dependencies.jar \
   mb.statix.benchmark.JavaBenchmark \
   -p parallelism=4 \
   -p mode=CONCURRENT \
-  -p project=commons-csv \
+  -p project=commons-csv,commons-io,commons-lang3 \
   -p flags=0,2
