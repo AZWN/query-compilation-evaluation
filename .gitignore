@@ -7,3 +7,4 @@
 # local benchmark results
 /build/*.csv
 /build/*.jar
+/build/*.log

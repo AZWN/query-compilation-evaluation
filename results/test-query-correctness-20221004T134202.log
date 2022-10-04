@@ -1,0 +1,21 @@
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - [commons-csv]: tracing queries.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * running type-checker.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * extracting scope graph and queries.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         -   * total query count: 14328.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * validating queries.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         -   * validated query count: 14328; failed: 0.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * total time: 20810ms.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - [commons-io]: tracing queries.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * running type-checker.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * extracting scope graph and queries.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         -   * total query count: 73843.
+13:42 | INFO  |                 | m.s.b.b.QueryExtractor         - * validating queries.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         -   * validated query count: 73843; failed: 0.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         - * total time: 40802ms.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         - [commons-lang3]: tracing queries.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         - * running type-checker.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         - * extracting scope graph and queries.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         -   * total query count: 288883.
+13:43 | INFO  |                 | m.s.b.b.QueryExtractor         - * validating queries.
+13:44 | INFO  |                 | m.s.b.b.QueryExtractor         -   * validated query count: 288883; failed: 0.
+13:44 | INFO  |                 | m.s.b.b.QueryExtractor         - * total time: 110994ms.
