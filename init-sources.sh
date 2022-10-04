@@ -14,7 +14,7 @@ cd sources
 sparse_checkout "nabl" \
   "git@github.com:metaborg/nabl" \
   'develop/tracing' \
-  '/scopegraph' '/p_raffrayi' 'statix.solver'
+  '/scopegraph' '/p_raffrayi' 'statix.solver' 'statix.lang'
 
 # Clone benchmark tool
 sparse_checkout "statix-benchmark" \
@@ -57,3 +57,10 @@ install_plugin_dep "org.apache.maven:maven-plugin-descriptor:2.0.6:jar"
 install_plugin_dep "org.apache.maven.shared:maven-filtering:1.1:jar"
 install_plugin_dep "org.apache.maven.reporting:maven-reporting-api:2.0.9:jar"
 install_plugin_dep "org.apache.maven.surefire:maven-surefire-common:2.12.4:jar"
+
+for dep in ${SPOOFAX_DEPS[@]}; do
+  install_plugin_dep "org.metaborg:$dep:${SPOOFAX_VERSION}:spoofax-language"
+done
+for dep in ${JAVA_DEPS[@]}; do
+  install_plugin_dep "org.metaborg:$dep:${SPOOFAX_JAVA_VERSION}:spoofax-language"
+done

@@ -1,4 +1,19 @@
-SCRIPT_DIR=$(dirname $0 | xargs realpath)
+export SCRIPT_DIR=$(dirname $0 | xargs realpath)
+
+export SPOOFAX_VERSION="2.6.0-SNAPSHOT"
+export SPOOFAX_JAVA_VERSION="1.1.0-SNAPSHOT"
+
+export SPOOFAX_DEPS=(org.metaborg.meta.lang.template org.metaborg.meta.lang.esv statix.lang sdf3.ext.statix meta.lib.spoofax statix.runtime)
+export JAVA_DEPS=(lang.java)
+
+_SPOOFAXPATH=""
+for dep in ${SPOOFAX_DEPS[@]}; do
+  _SPOOFAXPATH="$SCRIPT_DIR/.m2/repository/org/metaborg/$dep/$SPOOFAX_VERSION/$dep-$SPOOFAX_VERSION.spoofax-language:$_SPOOFAXPATH"
+done
+for dep in ${JAVA_DEPS[@]}; do
+  _SPOOFAXPATH="$SCRIPT_DIR/.m2/repository/org/metaborg/$dep/$SPOOFAX_JAVA_VERSION/$dep-$SPOOFAX_JAVA_VERSION.spoofax-language:$_SPOOFAXPATH"
+done
+export SPOOFAXPATH=$_SPOOFAXPATH
 
 function mvn_bare() {
   local repo=$SCRIPT_DIR/.m2/repository
