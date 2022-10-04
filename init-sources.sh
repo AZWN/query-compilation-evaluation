@@ -14,13 +14,13 @@ cd sources
 sparse_checkout "nabl" \
   "git@github.com:metaborg/nabl" \
   'develop/tracing' \
-  '/scopegraph' '/p_raffrayi' 'statix.solver' 'statix.lang'
+  '/scopegraph' '/p_raffrayi' '/statix.solver' '/statix.lang'
 
 # Clone benchmark tool
 sparse_checkout "statix-benchmark" \
   "git@github.com:metaborg/statix-benchmark.git" \
   "query-compilation-benchmark" \
-  '/statix.benchmark' '/statix.benchmark.builder'
+  '/statix.benchmark' '/statix.benchmark.builder' '/statix.benchmark.query.compilation'
 
 # Clone Java Spec & Evaluation projects
 sparse_checkout "java-front" \
