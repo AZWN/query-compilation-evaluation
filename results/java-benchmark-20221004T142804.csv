@@ -1,0 +1,7 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: flags","Param: mode","Param: parallelism","Param: project","Param: specVersion"
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,4.446270,0.334568,"s/op",0,CONCURRENT,4,commons-csv,abc1776f48792486afdfa9871c5f8698deb709c1
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,11.651619,0.740003,"s/op",0,CONCURRENT,4,commons-io,abc1776f48792486afdfa9871c5f8698deb709c1
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,45.641823,1.175672,"s/op",0,CONCURRENT,4,commons-lang3,abc1776f48792486afdfa9871c5f8698deb709c1
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,7.291254,0.356189,"s/op",2,CONCURRENT,4,commons-csv,abc1776f48792486afdfa9871c5f8698deb709c1
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,18.740264,0.919711,"s/op",2,CONCURRENT,4,commons-io,abc1776f48792486afdfa9871c5f8698deb709c1
+"mb.statix.benchmark.JavaBenchmark.run","ss",1,20,87.745340,2.041616,"s/op",2,CONCURRENT,4,commons-lang3,abc1776f48792486afdfa9871c5f8698deb709c1
