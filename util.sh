@@ -50,6 +50,18 @@ function sparse_checkout() {
   cd ..
 }
 
+function clone_or_update() {
+  local repourl=$1
+  local dir=$2
+  if [ ! -d "$dir" ]; then
+    git clone $repourl $dir
+  else
+    cd $dir
+    git pull
+    cd ..
+  fi
+}
+
 function install_plugin_dep() {
   mvn_bare dependency:get -Dartifact=$1 -DgeneratePom=true
 }

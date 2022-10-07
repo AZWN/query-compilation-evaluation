@@ -28,9 +28,9 @@ sparse_checkout "java-front" \
   "master" \
   '/lang.java' '/lang.java.statics'
 
-if [ ! -d "./java-evaluation" ]; then
-  git clone git@github.com:MetaBorgCube/java-evaluation.git
-fi
+clone_or_update git@github.com:MetaBorgCube/java-evaluation.git "./java-evaluation"
+
+clone_or_update https://github.com/AZWN/artifact-vm-builder "./artifact-vm-builder"
 
 cd ..
 
