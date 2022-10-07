@@ -8,3 +8,6 @@
 /build/*.csv
 /build/*.jar
 /build/*.log
+
+query-compilation-artifact.zip
+artifact-vm-builder/
