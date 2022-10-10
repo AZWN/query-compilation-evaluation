@@ -56,9 +56,16 @@ h <- hist(data$SpeedUpLog2,
   ylab = "Relative Frequency"
 )
 
+names = data.frame(Start = h$breaks[-1], End = head(h$breaks, -1), Value = h$density) %>%
+  mutate(Header = sprintf("%.1f - %.1f", Start, End)) %>%
+  select(Header, Value)
+
 q <- quantile(data$SpeedUp)
 q <- append(q, q[4] - q[2])         # Calculate IQR (Q3 - Q1)
 q <- append(q, q[3] + 1.5 * q[6])   # Calculate Upper Fence (Q2 + 1.5IQR)
 q <- setNames(q, c("Min", "Q1 (25%)", "Mean (50%)", "Q3 (75%)", "Max", "IQR", "Upper Fence"))
 
+cat("\nHistogram:\n")
+print(names)
+cat("\nSummary:\n")
 print(q)
