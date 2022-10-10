@@ -1,4 +1,5 @@
 export SCRIPT_DIR=$(dirname $0 | xargs realpath)
+export MAVEN_OPTS="-Xms512m -Xmx2048m -Xss16m"
 
 export SPOOFAX_VERSION="2.6.0-SNAPSHOT"
 export SPOOFAX_JAVA_VERSION="1.1.0-SNAPSHOT"
