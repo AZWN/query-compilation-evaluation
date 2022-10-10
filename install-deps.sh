@@ -4,6 +4,8 @@ set -eu
 
 source util.sh
 
+Rscript -e 'install.packages(c("tidyverse", "knitr", "whereami", "forcats"))'
+
 # Install plugins
 install_plugin_dep "org.codehaus.plexus:plexus-component-annotations:2.0.0:jar"
 install_plugin_dep "org.apache.maven.shared:maven-common-artifact-filters:3.1.0:jar"
