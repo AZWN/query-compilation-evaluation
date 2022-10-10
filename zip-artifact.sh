@@ -7,7 +7,7 @@ if [ -f $ZIP]; then
   rm $ZIP
 fi
 
-zip -r  $ZIP sources
+zip -r  $ZIP sources -x sources/**/.git/**\*
 zip -ur $ZIP build
 zip -ur $ZIP results
 zip -ur $ZIP Rscripts
