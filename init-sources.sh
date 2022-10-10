@@ -28,8 +28,9 @@ sparse_checkout "java-front" \
   "master" \
   '/lang.java' '/lang.java.statics'
 
+
 clone_or_update git@github.com:MetaBorgCube/java-evaluation.git "./java-evaluation"
 
-clone_or_update https://github.com/AZWN/artifact-vm-builder "./artifact-vm-builder"
+clone_or_update git@github.com:AZWN/query-compilation-examples.git "./compilation-examples"
 
 cd ..
