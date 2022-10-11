@@ -3,7 +3,7 @@
 set -eu
 ZIP="./query-compilation-artifact.zip"
 
-if [ -f $ZIP]; then
+if [ -f "$ZIP" ]; then
   rm $ZIP
 fi
 
@@ -14,6 +14,8 @@ zip -ur $ZIP Rscripts
 zip -ur $ZIP util.sh
 zip -ur $ZIP build-sources.sh
 zip -ur $ZIP .m2
+zip -ur $ZIP vm
 zip -ur $ZIP LICENSE
-# TODO: include VM
-# TODO: include readme
+zip -ur $ZIP README.txt
+
+du -h $ZIP
