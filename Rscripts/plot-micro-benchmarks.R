@@ -44,8 +44,7 @@ h <- hist(data$SpeedUpLog2,
   breaks = 20,
   freq = FALSE,
 
-  xlim = c(0, 12),
-  ylim = c(0, 0.5),
+  ylim = c(0, 0.6),
 
   # Ensure axes connect properly
   xaxs = "i",
@@ -56,9 +55,9 @@ h <- hist(data$SpeedUpLog2,
   ylab = "Relative Frequency"
 )
 
-names = data.frame(Start = h$breaks[-1], End = head(h$breaks, -1), Value = h$density) %>%
+names = data.frame(Start = h$breaks[-1], End = head(h$breaks, -1), Log.SpeedUp = h$density) %>%
   mutate(Header = sprintf("%.1f - %.1f", Start, End)) %>%
-  select(Header, Value)
+  select(Header, Log.SpeedUp)
 
 q <- quantile(data$SpeedUp)
 q <- append(q, q[4] - q[2])         # Calculate IQR (Q3 - Q1)
@@ -67,5 +66,5 @@ q <- setNames(q, c("Min", "Q1 (25%)", "Mean (50%)", "Q3 (75%)", "Max", "IQR", "U
 
 cat("\nHistogram:\n")
 print(names)
-cat("\nSummary:\n")
+cat("\nSummary of SpeedUps:\n")
 print(q)
