@@ -13,6 +13,7 @@ zip -ur $ZIP results
 zip -ur $ZIP Rscripts
 zip -ur $ZIP util.sh
 zip -ur $ZIP build-sources.sh
+zip -ur $ZIP clean-sources.sh
 zip -ur $ZIP .m2
 zip -ur $ZIP vm
 zip -ur $ZIP LICENSE
