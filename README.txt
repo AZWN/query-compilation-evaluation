@@ -303,3 +303,55 @@ In Eclipse, the following functions are important:
 
 
 ## Relation between Source Code and Paper
+
+In this section, we discuss how the included sources relate to the paper.
+We first give an overview of the `sources/` subdirectory, and then highlight a few important sources.
+The sources subdirectory contains the following projects:
+- `nabl/scopegraph`: contains the definition of scope graphs, and the name resolution algorithms.
+- `nabl/p_raffrayi`: contains a framework for executing scope-graph-based type-checkers concurrently and incrementally. It is included because this artifact contains a special development build of Statix that allows tracing queries (required for the tests and micro-benchmarks), but not directly relevant.
+- `nabl/statix.solver`: contains the Solver for Statix, which uses scope graph based name resolution.
+  - `src/main/java/mb/statix/concurrent/StatixSolver.java` contains the concurrent Statix solver, which is used for the integration benchmarks. Lines 624-715 (esp. 670-673) show how queries are interpreted. This corresponds to the `Op-Query-SM` rule in figure 7 of the paper.
+- `nabl/statix.lang`: contains the Statix meta-language definition
+  - `syntax/statix/lang/PreCompiled.sdf3` contains the syntax of compiled queries, corresponding to figure 6 of the paper.
+- `statix.benchmark`: contains the test and benchmarking tools discussed extensively above.
+- `java-front/lang.java`: Syntax specification for Java.
+- `java-front/lang.java.statics`: Type system specification for Java. Used for all tests and benchmarks that used Java projects as object programs.
+- `java-evaluation/`: contains Java projects `commons-csv`, `commons-io` and `commons-lang3`, which are used for testing and benchmarking.
+- `compilation-examples/`: contains projects that can be imported in Eclipse and explored, as discussed above.
+
+
+### Name Resolution Algorithm
+
+The name resolution algorithm is implemented three times in this artifact:
+1. `sources/nabl/scopegraph/src/main/java/mb/scopegraph/oopsla20/reference/NameResolution.java`
+2. `sources/nabl/scopegraph/src/main/java/mb/scopegraph/oopsla20/reference/FastNameResolution.java`
+3. `sources/nabl/scopegraph/src/main/java/mb/scopegraph/ecoop21/NameResolution.java`
+
+The name resolution algorithm as presented in figure 5 is implemented in (1). (2) is an adapted version which is slightly faster. This version is used in the micro-benchmarks as reference. (3) is an asynchronous implementation of (1), which is used in the concurrent Statix solver. We discuss the relation between (1) and figure 5 in more detail.
+
+
+Creating an instance of this class is roughly equal to calling `Resolve` in fig. 5.
+The fields are the values of the sub-functions.
+The `dataLabel` field is the `$` label.
+The completeness condition is used for scheduling queries correctly, which is briefly discussed in the Related Work section, but irrelevant otherwise.
+
+The `env` method corresponds to `Resolve-All`, but passes all labels instead of only the head set (algorithm (3), which is used for profiling, makes this restriction).
+The `env_L` method corresponds to `Resolve-L` and `Resolve-lL`.
+The `env` variable is the aggregate of all iterations over the for loop.
+It first computes the `max` over the label set.
+Then, it iterates over each max label, and invokes `env_L` with the `smaller`-set.
+Then, it computes the environment for `l` using `env_l`.
+These results are shadowed (`minus`) and added to the aggregate set `env`.
+
+The `max` and `smaller` functions directly correspond to their counterparts in the paper, and `env_l` to `Resolve-l-hat`.
+
+The `env_data` method corresponds to `Resolve-$`.
+It first tests if the current `path` matches the original `re` by checking if its current state is accepting.
+In our paper, this check already happens in `ResolveAll` (specifically, the `{ $ | e \in L(R) }` condition).
+Then, when `dataWf.wf(datum)` holds, the path is returned in a singleton environment.
+
+Finally `env_edges` corresponds to `Resolve-l`.
+It first checks whether `l` can be followed, which is the case when `newRe` is available.
+The paper does this in the H(R) function in `Resolve-All`.
+Then, it uses `getEdges` to retrieve all new target scopes.
+For each target, it extends the path (`step`), and calls `env` (`Resolve-All`) again.
