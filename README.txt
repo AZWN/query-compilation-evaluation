@@ -12,7 +12,7 @@ This artifact is structured as follows:
 - the `build` directory contains jars and scripts to execute tests and benchmarks
 - the `results` directory contains the result files used to generate the figures in the paper
 - the `Rscripts` directory contains R scripts to analyze and plot the results
-- the `vm` directory contains a QEMU/VirtualBox executable virtual machine. In the `/home/artifact/Desktop/artifact` directory, the same directories are included. In addition, it includes an Spoofax Eclipse instance, which can be used for exploring the algorithm.
+- the `vm` directory contains a QEMU/VirtualBox executable virtual machine. In the `/home/artifact/Desktop/artifact` directory, the same directories are included. In addition, it includes an Spoofax Eclipse instance, which can be used for exploring the algorithm. There are two users, `root` and `artifact`, which both have password `artifact`.
 
 All required maven dependencies and plugins are included in the `.m2` directory.
 Using `source util.sh` ensures maven functions independent from the main maven installation on the host system.
@@ -39,8 +39,10 @@ This section describes how the different tests and benchmarks can be tested.
 
 There are three options to run the artifact:
 1. Host machine: open a terminal at the location of the unzipped artifact.
-2. QEMU: open a terminal in the `vm` directory, and run `./run`. In the guest machine, open a terminal in `/home/artifact/Desktop/artifact`.
-3. VirtualBox: Import the `vm/artifact-sle22.ovf` image in VirtualBox, start it, and open a terminal in `/home/artifact/Desktop/artifact`.
+2. QEMU: open a terminal in the `vm` directory, and run `./run`. In the guest machine, open a bash shell in `/home/artifact/Desktop/artifact`.
+3. VirtualBox: Import the `vm/artifact-sle22.ovf` image in VirtualBox, start it, and open a bash shell in `/home/artifact/Desktop/artifact`.
+
+> On the virtual machine, `Konsole` can be used as a pre-installed console. Be sure to call `$ bash`, to ensure you are in a bash shell.
 
 > It is recommended to execute the benchmarks on the host machine, as virtualization may give different performance characteristics.
 
@@ -48,7 +50,7 @@ There are three options to run the artifact:
 ### 1. Building all sources
 
 Using `./build-sources.sh`, all sources can be built. Not that this is not required for evaluating the following steps.
-
+When this script complains about missing plugin dependencies, please use `./install-deps.sh` to install those, but report it as a deficiency in the artifact.
 
 ### 2. Executing the Unit Tests
 
@@ -74,6 +76,7 @@ This script should print that approximately 4-5% of the time is spend on precomp
 
 The results should be comparable to `./Rscripts/plot-pipeline.R ./results/compilation-benchmark-20221004T143716.csv`.
 
+> When this fails with an error that `StatixLang` cannot be found, be sure that you are in a bash shell by executing the `bash` command.
 
 ### 4. Executing the Integration Benchmarks
 
@@ -424,3 +427,13 @@ The `isShadowed` function returns `false` only if no declaration in the left env
 
 Finally, the last case (line 201 - 209) implements the rules in figure 11.
 The left environment is returned if not empty (`Exp-Else-L`) or the result of evaluating the right expression (`Exp-Else-R`) otherwise.
+
+
+## Known Issues
+
+On some operating systems, using the VM with QEMU crashes with the following message:
+```
+vmx_write_mem: mmu_gva_to_gpa ffff9c5a5d044000 failed
+```
+This is due to a bug in QEMU.
+[StackOverflow](https://stackoverflow.com/questions/60231203/qemu-qcow2-mmu-gva-to-gpa-crash-in-mac-os-x) suggests this can be fixed by altering the `-cpu` argument in `./run`.

@@ -4,7 +4,11 @@ set -eu
 
 source util.sh
 
-sudo chmod o+w /usr/local/lib/R/site-library
+if [ -d /usr/local/lib/R/site-library ]; then
+  sudo chmod o+w /usr/local/lib/R/site-library
+else
+  mkdir -p /usr/local/lib/R/site-library
+fi
 ./install-r-deps.R
 
 # Install plugins

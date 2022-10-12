@@ -34,10 +34,8 @@ data <- inner_join(trad, compiled, "ProjectName_Index") %>%
   )
 
 # Plot Histogram
-pdf(
-  file = files[2],
-  width = 4,
-  height = 4
+png(
+  filename = files[2], width = 320, height = 320, units = "px"
 )
 
 h <- hist(data$SpeedUpLog2,

@@ -27,6 +27,14 @@ function clean_lang() {
   popd
 }
 
+clean_java "sources/nabl/scopegraph"
+clean_java "sources/nabl/p_raffrayi"
+clean_java "sources/nabl/statix.solver"
+clean_lang "sources/nabl/statix.lang"
+
+clean_lang "sources/java-front/lang.java"
+clean_lang "sources/java-front/lang.java.statics"
+
 clean_java "sources/statix-benchmark/statix.benchmark"
 clean_java "sources/statix-benchmark/statix.benchmark.builder"
 clean_java "sources/statix-benchmark/statix.benchmark.query.compilation"
